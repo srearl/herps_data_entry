@@ -1,9 +1,11 @@
 class RiverReach < ActiveRecord::Base
 
+  # belongs_to :sampling_event
   self.table_name = "river_reaches"
-
-#  def display_name 
-#    "#{Sample_ID}"
-#  end
+  has_many :sampling_events, foreign_key: :river_reaches_id
+  
+  def display_name 
+    "#{reach}"
+  end
 
 end
