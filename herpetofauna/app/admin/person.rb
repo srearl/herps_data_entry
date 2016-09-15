@@ -1,5 +1,16 @@
 ActiveAdmin.register Person do
 
+  # generate methodology for new person form
+  form do |f|
+    f.semantic_errors
+    f.inputs "Details" do
+      f.input :last_name
+      f.input :first_name
+      f.input :initials
+    end
+    f.actions
+  end
+
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

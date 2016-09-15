@@ -1,8 +1,8 @@
 class Observer < ActiveRecord::Base
 
-  belongs_to :sampling_event
+  has_many :sampling_events, foreign_key: :sampling_events_id
+  has_many :persons, foreign_key: :persons_id
 
-# this controls the "header" when you click on an entry
 #  def display_name 
 #    "#{self.observation_date.to_date}"
 #  end

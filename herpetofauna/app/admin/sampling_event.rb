@@ -1,22 +1,15 @@
 ActiveAdmin.register SamplingEvent do
 
-#  scope :all, :default => true do |sampling_events|
-#    sampling_events.joins :river_reaches
-#  end
+  # customize the index to include the river reach name and format the date
+  index do
+    id_column
+    column :river_reach
+    column :observation_date, :sortable => :observation_date do |sampling_event| sampling_event.observation_date.strftime("%Y-%m-%d") unless(sampling_event.observation_date.nil?) end
+    column :sampling_events_notes
+    actions
+  end
 
-#  index do
-#    :observation_date
-#    #id_column
-#    #column :site, :sortable => 'sites.site_code'
-#    #column :survey_date, :sortable => :survey_date do |survey| survey.survey_date.strftime("%Y-%m-%d") unless(survey.survey_date.nil?) end
-#    #column :time_start, :sortable => :time_start do  |survey| survey.time_start.strftime("%I:%M%p") unless(survey.time_start.nil?) end
-#    #column :time_end,   :sortable => :time_end   do  |survey| survey.time_end.strftime("%I:%M%p")   unless(survey.time_end.nil?)   end
-#    #column :observer
-#    ## column :noise_obs do |survey| survey.noise_observations.count end
-#    actions
-#  end
-  
-
+  # generate methodology for new sampling event form
   form do |f|
     f.semantic_errors
     f.inputs "Details" do
@@ -27,18 +20,10 @@ ActiveAdmin.register SamplingEvent do
     f.actions
   end
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
- permit_params :id, :river_reaches_id, :observation_date, :sampling_events_notes
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+  # address strong params
+  permit_params :id, :river_reaches_id, :observation_date, :sampling_events_notes
+
+  # customize the ? to include the river reach name
   show :title => :display_name do 
      attributes_table do
        row :id
@@ -47,6 +32,5 @@ ActiveAdmin.register SamplingEvent do
        row :sampling_events_notes
     end
   end
-
 
 end
