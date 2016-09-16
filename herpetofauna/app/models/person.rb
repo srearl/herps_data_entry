@@ -1,7 +1,7 @@
 class Person < ActiveRecord::Base
 
   self.table_name = "persons"
-  belongs_to :observer
+  belongs_to :observer, foreign_key: :persons_id
 
   def display_name 
     "#{self.initials}"

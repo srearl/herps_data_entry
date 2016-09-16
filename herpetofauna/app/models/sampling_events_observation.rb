@@ -1,6 +1,5 @@
 class SamplingEventsObservation < ActiveRecord::Base
 
-#  self.table_name = "persons"
   belongs_to :sampling_event, foreign_key: :sampling_events_id
 
 #  def display_name 
