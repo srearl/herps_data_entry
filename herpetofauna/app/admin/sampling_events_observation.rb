@@ -3,8 +3,12 @@ ActiveAdmin.register SamplingEventsObservation do
   # customize the index to include the river reach name and format the date
   index do
     id_column
+    column :sampling_event_id
+    column :sampling_event
     column :river_reach
     column :observation_date
+    column :observation_date, :sortable => 'sampling_event.observation_date'
+    column :observation_date, :sortable => 'sampling_events.observation_date'
     column :quantity
     column :sampling_events_observation_notes
     actions

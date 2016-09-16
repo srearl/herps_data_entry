@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914203709) do
+ActiveRecord::Schema.define(version: 20160916204459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20160914203709) do
   end
 
   create_table "observers", force: :cascade do |t|
-    t.integer "sampling_events_id"
+    t.integer "sampling_event_id"
     t.integer "persons_id"
   end
 
@@ -101,14 +101,14 @@ ActiveRecord::Schema.define(version: 20160914203709) do
   end
 
   create_table "sampling_events_observations", force: :cascade do |t|
-    t.integer "sampling_events_id"
+    t.integer "sampling_event_id"
     t.integer "herp_taxons_id"
     t.float   "quantity"
     t.text    "sampling_events_observation_notes"
   end
 
   create_table "surveys", force: :cascade do |t|
-    t.integer "sampling_events_id"
+    t.integer "sampling_event_id"
     t.integer "plot_locations_id"
     t.time    "time_start"
     t.time    "time_end"
@@ -142,12 +142,12 @@ ActiveRecord::Schema.define(version: 20160914203709) do
 
   add_foreign_key "location_histories", "plot_locations", column: "plot_locations_id", name: "location_histories_fk_plot_locations"
   add_foreign_key "observers", "persons", column: "persons_id", name: "observers_fk_persons"
-  add_foreign_key "observers", "sampling_events", column: "sampling_events_id", name: "observers_fk_sampling_events"
+  add_foreign_key "observers", "sampling_events", name: "observers_fk_sampling_events"
   add_foreign_key "plot_locations", "river_reaches", column: "river_reaches_id", name: "plot_locations_fk_river_reaches"
   add_foreign_key "sampling_events", "river_reaches", column: "river_reaches_id", name: "sampling_events_fk_river_reaches"
   add_foreign_key "sampling_events_observations", "herp_taxons", column: "herp_taxons_id", name: "sampling_events_observations_fk_herp_taxons"
-  add_foreign_key "sampling_events_observations", "sampling_events", column: "sampling_events_id", name: "sampling_events_observations_fk_sampling_events"
-  add_foreign_key "surveys", "sampling_events", column: "sampling_events_id", name: "surveys_fk_sampling_events"
+  add_foreign_key "sampling_events_observations", "sampling_events", name: "sampling_events_observations_fk_sampling_events"
+  add_foreign_key "surveys", "sampling_events", name: "surveys_fk_sampling_events"
   add_foreign_key "surveys_observations", "herp_taxons", column: "herp_taxons_id", name: "surveys_observations_fk_herp_taxons"
   add_foreign_key "surveys_observations", "surveys", column: "surveys_id", name: "surveys_observations_fk_survyes"
   add_foreign_key "whole_transect_histories", "river_reaches", column: "river_reaches_id", name: "whole_transect_histories_fk_river_reaches"

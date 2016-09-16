@@ -30,7 +30,13 @@ ActiveAdmin.register SamplingEvent do
        row :river_reach
        row :observation_date
        row :sampling_events_notes
+      end
+
+  panel "survey observations" do
+    attributes_table do
+      row :herp_taxons_id
     end
+  end
   end
 
 end

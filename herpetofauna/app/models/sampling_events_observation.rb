@@ -1,6 +1,7 @@
 class SamplingEventsObservation < ActiveRecord::Base
 
-  belongs_to :sampling_event, foreign_key: :sampling_events_id
+  belongs_to :sampling_event, foreign_key: :sampling_event_id
+  # belongs_to :sampling_event, foreign_key: :sampling_events_id
 
 #  def display_name 
 #    "#{self.initials}"
