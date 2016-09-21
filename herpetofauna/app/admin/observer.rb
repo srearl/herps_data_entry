@@ -3,6 +3,7 @@ ActiveAdmin.register Observer do
   # customize the index to include the river reach name and format the date
   index do
     id_column
+    column :observation_date
     column :sampling_events_id
     column :last_name
     column :first_name

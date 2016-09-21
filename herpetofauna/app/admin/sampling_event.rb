@@ -33,8 +33,8 @@ ActiveAdmin.register SamplingEvent do
       end
 
   panel "survey observations" do
-    attributes_table do
-      row :herp_taxons_id
+    table_for sampling_event.sampling_events_observations do |seo|
+      seo.column :quantity
     end
   end
   end

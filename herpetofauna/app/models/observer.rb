@@ -1,8 +1,11 @@
 class Observer < ActiveRecord::Base
 
-  has_many :sampling_events
-  # has_many :sampling_events, foreign_key: :sampling_events_id
+  belongs_to :sampling_event
   has_many :persons, foreign_key: :persons_id
+
+  def observation_date
+    self.sampling_event.observation_date unless self.sampling_event.nil? 
+  end
 
 #  def display_name 
 #    "#{self.observation_date.to_date}"
