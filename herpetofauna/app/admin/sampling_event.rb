@@ -42,6 +42,10 @@ ActiveAdmin.register SamplingEvent do
   panel "observers" do
     table_for sampling_event.observers do |obs|
       obs.column :id
+      obs.column :initials # calling initials here without a method, why not working???
+      obs.column :person_id
+      obs.column :last_name
+      obs.column :first_name
     end
   end
   end
