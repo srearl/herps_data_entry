@@ -23,18 +23,25 @@ ActiveAdmin.register SamplingEvent do
   # address strong params
   permit_params :id, :river_reaches_id, :observation_date, :sampling_events_notes
 
-  # customize the ? to include the river reach name
+  # show panel
   show :title => :display_name do 
      attributes_table do
        row :id
        row :river_reach
-       row :observation_date
+       row :observation_date, :observation_date do |sampling_event| sampling_event.observation_date.strftime("%Y-%m-%d") unless(sampling_event.observation_date.nil?) end
        row :sampling_events_notes
       end
 
   panel "survey observations" do
     table_for sampling_event.sampling_events_observations do |seo|
       seo.column :quantity
+      seo.column :sampling_events_observation_notes
+    end
+  end
+
+  panel "observers" do
+    table_for sampling_event.observers do |obs|
+      obs.column :id
     end
   end
   end
