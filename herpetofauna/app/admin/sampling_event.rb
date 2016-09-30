@@ -34,6 +34,7 @@ ActiveAdmin.register SamplingEvent do
 
   panel "survey observations" do
     table_for sampling_event.sampling_events_observations do |seo|
+      seo.column :code
       seo.column :quantity
       seo.column :sampling_events_observation_notes
     end
@@ -42,7 +43,7 @@ ActiveAdmin.register SamplingEvent do
   panel "observers" do
     table_for sampling_event.observers do |obs|
       obs.column :id
-      obs.column :initials # calling initials here without a method, why not working???
+      obs.column :initials # calling initials here without a method in the observer model, why not working???
       obs.column :person_id
       obs.column :last_name
       obs.column :first_name

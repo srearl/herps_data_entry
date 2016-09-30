@@ -4,6 +4,7 @@ class SamplingEvent < ActiveRecord::Base
   has_many :observers
   has_many :sampling_events_observations, foreign_key: :sampling_event_id
   has_many :persons, through: :observers # cannot discern if this is accomplishing anything
+  has_many :herp_taxons, through: :sampling_events_observations
 
   def display_name 
     "#{self.id}"
