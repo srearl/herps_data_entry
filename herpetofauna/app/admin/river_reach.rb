@@ -1,17 +1,10 @@
 ActiveAdmin.register RiverReach do
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+  # remove the capability to edit the river reaches
+  actions :index, :show, :update, :view
+
+  # remove the capability to edit the river reaches
+  # config.clear_action_items! # this only removed the top level (i.e., new) button but not the index buttons
 
 
 end

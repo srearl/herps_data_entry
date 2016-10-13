@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929163517) do
+ActiveRecord::Schema.define(version: 20161013171455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20160929163517) do
   end
 
   create_table "location_histories", force: :cascade do |t|
-    t.integer "plot_locations_id"
+    t.integer "plot_location_id"
     t.float   "lat_north"
     t.float   "long_north"
     t.float   "lat_south"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20160929163517) do
     t.integer "river_reaches_id"
     t.text    "transect"
     t.text    "location"
+    t.text    "rchtscloc_display"
   end
 
   create_table "river_reaches", force: :cascade do |t|
@@ -109,14 +110,14 @@ ActiveRecord::Schema.define(version: 20160929163517) do
 
   create_table "surveys", force: :cascade do |t|
     t.integer "sampling_event_id"
-    t.integer "plot_locations_id"
+    t.integer "plot_location_id"
     t.time    "time_start"
     t.time    "time_end"
     t.text    "surveys_notes"
   end
 
   create_table "surveys_observations", force: :cascade do |t|
-    t.integer "surveys_id"
+    t.integer "survey_id"
     t.integer "herp_taxon_id"
     t.float   "quantity"
     t.text    "surveys_observation_notes"
@@ -140,7 +141,7 @@ ActiveRecord::Schema.define(version: 20160929163517) do
     t.text    "wth_notes"
   end
 
-  add_foreign_key "location_histories", "plot_locations", column: "plot_locations_id", name: "location_histories_fk_plot_locations"
+  add_foreign_key "location_histories", "plot_locations", name: "location_histories_fk_plot_locations"
   add_foreign_key "observers", "persons", name: "observers_fk_persons"
   add_foreign_key "observers", "sampling_events", name: "observers_fk_sampling_events"
   add_foreign_key "plot_locations", "river_reaches", column: "river_reaches_id", name: "plot_locations_fk_river_reaches"
@@ -149,6 +150,6 @@ ActiveRecord::Schema.define(version: 20160929163517) do
   add_foreign_key "sampling_events_observations", "sampling_events", name: "sampling_events_observations_fk_sampling_events"
   add_foreign_key "surveys", "sampling_events", name: "surveys_fk_sampling_events"
   add_foreign_key "surveys_observations", "herp_taxons", name: "surveys_observations_fk_herp_taxons"
-  add_foreign_key "surveys_observations", "surveys", column: "surveys_id", name: "surveys_observations_fk_survyes"
+  add_foreign_key "surveys_observations", "surveys", name: "surveys_observations_fk_survyes"
   add_foreign_key "whole_transect_histories", "river_reaches", column: "river_reaches_id", name: "whole_transect_histories_fk_river_reaches"
 end
