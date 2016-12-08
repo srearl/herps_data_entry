@@ -8,6 +8,7 @@ gem 'pg'
 gem 'annotate'
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
+gem 'devise_cas_authenticatable'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
