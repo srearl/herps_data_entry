@@ -6,5 +6,10 @@ class AdminUser < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :username
 
+  before_save :generate_email
+
+  def generate_email
+    self.email = "#{username}@asu.edu"
+  end
   
 end
