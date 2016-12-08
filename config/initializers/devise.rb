@@ -6,7 +6,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'cae3c4b35dd6a698108f87c85e8c8dcaafc6831bbd55227ae3b1b8636d36a1f5f39c46727bfd67a6904f6ac2ee7bc6a67cf5059f5835ac7f4f79509eafe337ce'
+  config.secret_key = '66da8acf039f8bd9e5a5eb186db98af962a612339c5f48745dc5d57f71c7b297c22c5d02bba9fb712361213a2d163f743dcc0e0faaa92ad088a1aa441d085af9'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -259,4 +259,46 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
+
+
+
+
+  # ===> CAS configuration 
+  config.cas_base_url = "https://weblogin.asu.edu/cas/"
+
+  # you can override these if you need to, but cas_base_url is usually enough
+  # config.cas_login_url = "https://cas.myorganization.com/login"
+  # config.cas_logout_url = "https://cas.myorganization.com/logout"
+  # config.cas_validate_url = "https://cas.myorganization.com/serviceValidate"
+
+  # The CAS specification allows for the passing of a follow URL to be displayed when
+  # a user logs out on the CAS server. RubyCAS-Server also supports redirecting to a
+  # URL via the destination param. Set either of these urls and specify either nil,
+  # 'destination' or 'follow' as the logout_url_param. If the urls are blank but
+  # logout_url_param is set, a default will be detected for the service.
+  # config.cas_destination_url = 'https://cas.myorganization.com'
+  # config.cas_follow_url = 'https://cas.myorganization.com'
+  # config.cas_logout_url_param = nil
+
+  # You can specify the name of the destination argument with the following option.
+  # e.g. the following option will change it from 'destination' to 'url'
+  # config.cas_destination_logout_param_name = 'url'
+
+  # By default, devise_cas_authenticatable will create users.  If you would rather
+  # require user records to already exist locally before they can authenticate via
+  # CAS, uncomment the following line.
+  config.cas_create_user = false
+
+  # You can enable Single Sign Out, which by default is disabled.
+  config.cas_enable_single_sign_out = true
+
+  # If you want to use the Devise Timeoutable module with single sign out, 
+  # uncommenting this will redirect timeouts to the logout url, so that the CAS can
+  # take care of signing out the other serviced applocations. Note that each
+  # application manages timeouts independently, so one application timing out will 
+  # kill the session on all applications serviced by the CAS.
+  # config.warden do |manager|
+  #   manager.failure_app = DeviseCasAuthenticatable::SingleSignOut::WardenFailureApp
+  # end
 end

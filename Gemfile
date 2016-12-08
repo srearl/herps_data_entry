@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.2.5'
 
 # added post-installation
 gem 'execjs'
@@ -7,6 +8,7 @@ gem 'pg'
 gem 'annotate'
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
+gem 'devise_cas_authenticatable'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -34,7 +36,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
