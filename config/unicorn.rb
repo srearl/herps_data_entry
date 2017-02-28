@@ -23,7 +23,7 @@ worker_processes 2
 # Help ensure your application will always spawn in the symlinked
 # "current" directory that Capistrano sets up.
 #working_directory "/path/to/app/current" # available in 0.94.0+
-APP_PATH = "/var/www/app/herpetofauna"
+APP_PATH = File.dirname( File.dirname(__FILE__) ) # "/var/www/app/herpetofauna"
 working_directory APP_PATH
 
 
