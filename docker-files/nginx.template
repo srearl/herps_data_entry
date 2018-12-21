@@ -1,0 +1,30 @@
+
+server {
+  listen 80;
+  server_name herpetofauna.app.gios.asu.edu herpetofauna.local.gios.asu.edu;
+  return 301 https://$server_name$request_uri; #We use a variable to have less hardcoding
+}
+
+
+server {
+  include ssl-vhost.conf;
+
+  ssl_certificate      gios.asu.edu-20180410.pem;
+  ssl_certificate_key  gios.asu.edu-20180410.pem;
+
+  server_name admin.local.gios.asu.edu;
+  root   /app/public;
+
+  location / {
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_redirect off;
+    proxy_pass http://app:3000;
+  }
+
+  error_page 500 502 503 504 /500.html;
+  client_max_body_size 4G;
+  keepalive_timeout   70;
+}
