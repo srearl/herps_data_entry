@@ -4,7 +4,7 @@ ruby '2.3.8'
 # added post-installation
 gem 'execjs'
 gem 'therubyracer'
-gem 'pg'
+gem 'pg', '~> 0.15'
 gem 'annotate'
 gem 'activeadmin', '~> 1.4'
 gem 'devise'
