@@ -16,5 +16,11 @@
 !/log/.keep
 /tmp
 
-# ignore local db settings
+# ignore local config settings
 /config/database.yml
+/config/env.yml
+
+# Ignore .env
+.env
+.env.shared-db
+*.pem

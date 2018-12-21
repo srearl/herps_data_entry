@@ -1,0 +1,49 @@
+version: '2'
+
+services:
+  ### https-redirect - http to https all traffic ###################
+  https-redirect:
+    image: picoded/https-redirect
+    ports:
+      - 80:80
+
+  ### reverse proxy and SSL termination #############################
+  proxy:
+    image: mnuessler/tls-termination-proxy
+    depends_on:
+      - app
+    links:
+      - app
+    ports:
+      - 443:443
+    environment:
+      HTTPS_UPSTREAM_SERVER_ADDRESS: app
+      HTTPS_UPSTREAM_SERVER_PORT: 3000
+    volumes:
+      - ./gios.asu.edu-20180410.pem:/cert.pem
+
+  # service configuration for our dockerized Rails app
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: rails-gios-admin:latest
+    env_file: .env
+    command: bundle exec rails s -p 3000 -b 0.0.0.0
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    volumes:
+      - ./:/app
+    ports:
+      - 3000:3000
+
+  ## Postgresql Database Container #############################
+  postgres:
+    image: postgres:9.5
+    environment:
+      POSTGRES_PASSWORD: secret
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - 5432:5432
