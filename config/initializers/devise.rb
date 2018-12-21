@@ -264,7 +264,7 @@ Devise.setup do |config|
 
 
 
-  # ===> CAS configuration 
+  # ===> CAS configuration
   config.cas_base_url = "https://weblogin.asu.edu/cas/"
 
   # you can override these if you need to, but cas_base_url is usually enough
@@ -293,10 +293,10 @@ Devise.setup do |config|
   # You can enable Single Sign Out, which by default is disabled.
   config.cas_enable_single_sign_out = true
 
-  # If you want to use the Devise Timeoutable module with single sign out, 
+  # If you want to use the Devise Timeoutable module with single sign out,
   # uncommenting this will redirect timeouts to the logout url, so that the CAS can
   # take care of signing out the other serviced applocations. Note that each
-  # application manages timeouts independently, so one application timing out will 
+  # application manages timeouts independently, so one application timing out will
   # kill the session on all applications serviced by the CAS.
   # config.warden do |manager|
   #   manager.failure_app = DeviseCasAuthenticatable::SingleSignOut::WardenFailureApp
